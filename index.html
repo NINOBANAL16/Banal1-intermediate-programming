@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catch the Box Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+    }
+    #gameArea {
+      width: 400px;
+      height: 300px;
+      border: 2px solid #333;
+      margin: 20px auto;
+      position: relative;
+      background: white;
+    }
+    #box {
+      width: 40px;
+      height: 40px;
+      background: purple;
+      position: absolute;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎯 Catch the Box</h2>
+  <p>Score: <span id="score">0</span></p>
+  <p>Time: <span id="time">10</span> seconds</p>
+
+  <div id="gameArea">
+    <div id="box"></div>
+  </div>
+
+  <script>
+    const box = document.getElementById("box");
+    const gameArea = document.getElementById("gameArea");
+    const scoreDisplay = document.getElementById("score");
+    const timeDisplay = document.getElementById("time");
+
+    let score = 0;
+    let timeLeft = 10;
+
+    function moveBox() {
+      const maxX = gameArea.clientWidth - box.clientWidth;
+      const maxY = gameArea.clientHeight - box.clientHeight;
+      box.style.left = Math.random() * maxX + "px";
+      box.style.top = Math.random() * maxY + "px";
+    }
+
+    box.onclick = () => {
+      score++;
+      scoreDisplay.textContent = score;
+      moveBox();
+    };
+
+    const timer = setInterval(() => {
+      timeLeft--;
+      timeDisplay.textContent = timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        alert("Game Over! Your score: " + score);
+        box.style.display = "none";
+      }
+    }, 1000);
+
+    moveBox();
+  </script>
+
+</body>
+</html>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
