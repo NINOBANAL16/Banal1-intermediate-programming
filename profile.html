@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NEONX – Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron', sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #000);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    /* HEADER */
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 50px;
+      background:#050816;
+      border-bottom: 2px solid #00f0ff;
+    }
+    header a {
+      color:#00f0ff;
+      text-decoration:none;
+      font-weight:600;
+      margin-left:25px;
+      transition:0.2s;
+    }
+    header a:hover { color:#7f00ff; }
+
+    /* MAIN LAYOUT */
+    .container {
+      display:grid;
+      grid-template-columns:1fr 2fr;
+      gap:40px;
+      max-width:1000px;
+      margin:60px auto;
+      padding:0 20px;
+    }
+
+    /* PROFILE CARD */
+    .card {
+      background: rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;
+      padding:30px;
+      backdrop-filter:blur(10px);
+      text-align:center;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-10px); }
+
+    .profile-img {
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      margin-bottom:20px;
+      border:3px solid #00f0ff;
+      object-fit:cover;
+      filter: drop-shadow(0 0 20px #00f0ff);
+    }
+
+    h2 { color:#00f0ff; margin-bottom:10px; }
+    p { color:#bfc7ff; margin:8px 0; }
+
+    /* INFO SECTION */
+    .info-section h3 { color:#7f00ff; margin-bottom:15px; }
+    .info-section p { color:#cfd8ff; line-height:1.6; }
+
+    .settings-link {
+      display:inline-block;
+      margin-top:25px;
+      padding:12px 30px;
+      border-radius:30px;
+      background: linear-gradient(90deg,#00f0ff,#7f00ff);
+      color:#000;
+      font-weight:600;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    .settings-link:hover { background: linear-gradient(90deg,#7f00ff,#00f0ff); }
+
+    /* FOOTER */
+    footer {
+      text-align:center;
+      padding:25px;
+      background:#02030a;
+      color:#7a85ff;
+      font-size:0.85rem;
+      margin-top:60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">NEONX</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Logout</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+
+    <!-- PROFILE CARD -->
+    <div class="card">
+      <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-img">
+      <h2>Niño Kyle Narciso L. Banal</h2>
+      <p>Email: BenDover67@yahoo.com</p>
+      <p>Address: 123 Main Street, Ohio, North America</p>
+    </div>
+
+    <!-- INFO SECTION -->
+    <div class="card info-section">
+      <h3>About Me</h3>
+      <p>Hello! I'm John Doe, a digital interface enthusiast. I specialize in futuristic UI design and interactive dashboards.</p>
+      <a href="settings.html" class="settings-link">Go to Settings</a>
+    </div>
+
+  </div>
+
+  <footer>
+    NEONX • Profile Page • Created by Niño Banal
+  </footer>
+
+</body>
+</html>
