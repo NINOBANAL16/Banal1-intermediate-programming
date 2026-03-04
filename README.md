@@ -30,6 +30,7 @@ ACTIVITY 2 Feb 2, 2026
 🔹 AI Assistance Disclosure (Required)
 Yes
 I use chatgpt to make the design more simple and easy to use and i put less color on the layout 
+
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 Activity 3
@@ -42,5 +43,6 @@ Activity 3
 -Settings have 4 text boxes that you could interact with 
 🔹 AI Assistance Disclosure: Yes, I use Ai 
 for the profile, while I did the rest 
+
 
 
