@@ -1,105 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>NEONX Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>NEONX | Access Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-  font-family: 'Orbitron', sans-serif;
-  background: radial-gradient(circle at top, #0a0f2c, #000);
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    <style>
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-purple: #7f00ff;
+            --bg-dark: #050816;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-.login-box {
-  background: rgba(255,255,255,0.05);
-  padding: 40px;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  text-align: center;
-  width: 300px;
-}
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top, #0a1133, #000);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-input, button {
-  width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-}
+        .login-box {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 320px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-button {
-  background: linear-gradient(90deg, #00f0ff, #7f00ff);
-  cursor: pointer;
-}
+        .login-box:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
 
-.error {
-  color: #ff4d4d;
-  font-size: 13px;
-  margin-top: 10px;
-}
-</style>
+        h2 {
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
 
-<script>
-function validateLogin(event) {
+        input {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            outline: none;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
 
-  let username = document.getElementById("username").value.trim();
-  let password = document.getElementById("password").value.trim();
-  let error = document.getElementById("error");
+        input:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
 
-  error.innerHTML = "";
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
 
-  if (username === "") {
-    error.innerHTML = "Username is required";
-    event.preventDefault();
-    return;
-  }
+        button:hover {
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: scale(1.02);
+        }
 
-  if (password === "") {
-    error.innerHTML = "Password is required";
-    event.preventDefault();
-    return;
-  }
+        button:active {
+            transform: scale(0.98);
+        }
 
-  if (password.length < 6) {
-    error.innerHTML = "Password must be at least 6 characters";
-    event.preventDefault();
-    return;
-  }
+        .error {
+            color: #ff4d4d;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            height: 20px; /* Prevents layout jump */
+        }
 
-  // If valid → go to profile
-  window.location.href = "profile.html";
-}
-</script>
+        .signup-text {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #888;
+        }
 
+        .signup-text a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="login-box">
-<h2>Login to NEONX</h2>
+    <h2>NEONX</h2>
 
-<form onsubmit="validateLogin(event)">
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" autocomplete="username">
+        <input type="password" id="password" placeholder="Password" autocomplete="current-password">
 
-<button type="submit">Login</button>
-</form>
+        <button type="submit" id="loginBtn">Initialize Access</button>
+    </form>
 
-<div id="error" class="error"></div>
+    <div id="error" class="error"></div>
 
-<p class="signup-text">
-Don’t have an account?
-<a href="signup.html">Sign up</a>
-</p>
-
+    <p class="signup-text">
+        New to the grid? <a href="signup.html">Register</a>
+    </p>
 </div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    // 1. Prevent actual form submission
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorDisplay = document.getElementById("error");
+    const loginBtn = document.getElementById("loginBtn");
+
+    // Clear previous errors
+    errorDisplay.innerHTML = "";
+
+    // 2. Simple Validation
+    if (username === "" || password === "") {
+        errorDisplay.innerHTML = "FIELDS CANNOT BE EMPTY";
+        return;
+    }
+
+    if (password.length < 6) {
+        errorDisplay.innerHTML = "MINIMUM 6 CHARACTERS REQUIRED";
+        return;
+    }
+
+    // 3. Simulated Authentication Sequence
+    loginBtn.innerHTML = "AUTHENTICATING...";
+    loginBtn.style.opacity = "0.7";
+    loginBtn.disabled = true;
+
+    // Simulate network delay
+    setTimeout(() => {
+        // In a real app, you'd verify credentials against a server here
+        window.location.href = "profile.html";
+    }, 1200);
+});
+</script>
 
 </body>
 </html>
