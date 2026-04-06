@@ -1,158 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>NEONX Sign Up</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>NEONX | Join the Future</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
-  
-  <script>
-function validateSignup(event){
-    event.preventDefault();
-    alert("Button is working ✅");
-}
-</script>
-  
-body {
-  font-family: 'Orbitron', sans-serif;
-  background: radial-gradient(circle at top, #0a0f2c, #000);
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    <style>
+        :root {
+            --neon-blue: #00f0ff;
+            --neon-purple: #7f00ff;
+            --error-red: #ff4d4d;
+            --success-cyan: #00ffcc;
+        }
 
-.signup-box {
-  background: rgba(255,255,255,0.05);
-  padding: 40px;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  text-align: center;
-  width: 320px;
-}
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top, #0a0f2c, #000);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-input, button {
-  width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  font-family: inherit;
-}
+        .signup-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+        }
 
-input {
-  background: rgba(255,255,255,0.1);
-  color: white;
-}
+        .signup-box:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+        }
 
-input::placeholder {
-  color: #bbb;
-}
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-button {
-  background: linear-gradient(90deg, #00f0ff, #7f00ff);
-  color: black;
-  font-weight: 600;
-  cursor: pointer;
-}
+        input {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
 
-.error {
-  color: #ff4d4d;
-  font-size: 13px;
-  margin-top: 10px;
-}
+        input:focus {
+            border-color: var(--neon-blue);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
 
-.success {
-  color: #00ffcc;
-  font-size: 13px;
-  margin-top: 10px;
-}
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            color: #000;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
 
-.login-text {
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: #ccc;
-}
-</style>
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
 
-<script>
-function validateSignup(event){
+        button:active {
+            transform: scale(0.98);
+        }
 
-  event.preventDefault();
+        #message {
+            min-height: 20px;
+            font-size: 12px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
 
-  let username = document.getElementById("username").value.trim();
-  let email = document.getElementById("email").value.trim();
-  let password = document.getElementById("password").value;
-  let confirm = document.getElementById("confirm").value;
+        .error { color: var(--error-red); }
+        .success { color: var(--success-cyan); }
 
-  let message = document.getElementById("message");
-  message.className = "error";
-  message.innerHTML = "";
+        .login-text {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #888;
+        }
 
-  if(username === ""){
-    message.innerHTML = "Username is required";
-    return;
-  }
+        .login-text a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-  if(username.length < 4){
-    message.innerHTML = "Username must be at least 4 characters";
-    return;
-  }
-
-  if(email === ""){
-    message.innerHTML = "Email is required";
-    return;
-  }
-
-  if(!email.includes("@") || !email.includes(".")){
-    message.innerHTML = "Enter a valid email";
-    return;
-  }
-
-  if(password.length < 6){
-    message.innerHTML = "Password must be at least 6 characters";
-    return;
-  }
-
-  if(password !== confirm){
-    message.innerHTML = "Passwords do not match";
-    return;
-  }
-
-  message.className = "success";
-  message.innerHTML = "Account Created Successfully ✅";
-
-  setTimeout(()=>{
-    window.location.href="login.html";
-  },1500);
-}
-</script>
-
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
 <div class="signup-box">
-<h2>Create Account</h2>
+    <h2>NeonX</h2>
+    
+    <form id="signupForm">
+        <input type="text" id="username" placeholder="Username" autocomplete="username">
+        <input type="email" id="email" placeholder="Email" autocomplete="email">
+        <input type="password" id="password" placeholder="Password" autocomplete="new-password">
+        <input type="password" id="confirm" placeholder="Confirm Password" autocomplete="new-password">
 
-<form onsubmit="validateSignup(event)">
-<input type="text" id="username" placeholder="Username">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-<input type="password" id="confirm" placeholder="Confirm Password">
+        <button type="submit">Initialize Account</button>
+    </form>
 
-<button type="submit">Sign Up</button>
-</form>
+    <div id="message" aria-live="polite"></div>
 
-<div id="message"></div>
+    <p class="login-text">
+        Already registered? <a href="login.html">Login</a>
+    </p>
+</div>
 
-<p class="login-text">
-Already have an account?
-<a href="login.html">Login</a>
-</p>
+<script>
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm").value;
+    const message = document.getElementById("message");
+
+    // Email Pattern Regex
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Reset styles
+    message.className = "error";
+    message.innerHTML = "";
+
+    // Validation Logic
+    if (username.length < 4) {
+        message.innerHTML = "SYSTEM ERROR: Username too short (Min 4)";
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        message.innerHTML = "SYSTEM ERROR: Invalid Email Protocol";
+        return;
+    }
+
+    if (password.length < 6) {
+        message.innerHTML = "SYSTEM ERROR: Security breach - Password too weak";
+        return;
+    }
+
+    if (password !== confirm) {
+        message.innerHTML = "SYSTEM ERROR: Password mismatch";
+        return;
+    }
+
+    // Success State
+    message.className = "success";
+    message.innerHTML = "CONNECTION ESTABLISHED: Account Created ✅";
+
+    // Disable button to prevent double submission
+    const btn = event.target.querySelector('button');
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 2000);
+});
+</script>
+
+</body>
+</html>
+
 
 </div>
 
