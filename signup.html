@@ -186,7 +186,9 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     message.className = "success";
     message.innerHTML = "CONNECTION ESTABLISHED: Account Created ✅";
 
-    // Disable button to prevent double submission
+localStorage.setItem('neonX_user', username);
+localStorage.setItem('neonX_email', email);
+
     const btn = event.target.querySelector('button');
     btn.disabled = true;
     btn.style.opacity = "0.5";
