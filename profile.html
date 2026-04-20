@@ -1,137 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NEONX – Profile</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>NEONX – User Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron', sans-serif; }
-    body {
-      background: radial-gradient(circle at top, #0a0f2c, #000);
-      color:#fff;
-      overflow-x:hidden;
-    }
+    <style>
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-purple: #7f00ff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-    /* HEADER */
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 50px;
-      background:#050816;
-      border-bottom: 2px solid #00f0ff;
-    }
-    header a {
-      color:#00f0ff;
-      text-decoration:none;
-      font-weight:600;
-      margin-left:25px;
-      transition:0.2s;
-    }
-    header a:hover { color:#7f00ff; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron', sans-serif; }
+        
+        body {
+            background: radial-gradient(circle at top, #0a1133, #000);
+            color:#fff;
+            min-height: 100vh;
+        }
 
-    /* MAIN LAYOUT */
-    .container {
-      display:grid;
-      grid-template-columns:1fr 2fr;
-      gap:40px;
-      max-width:1000px;
-      margin:60px auto;
-      padding:0 20px;
-    }
+        /* HEADER */
+        header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 50px;
+            background: rgba(5, 8, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neon-cyan);
+        }
+        
+        .logo { color: var(--neon-cyan); font-weight: 800; letter-spacing: 2px; }
 
-    /* PROFILE CARD */
-    .card {
-      background: rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:16px;
-      padding:30px;
-      backdrop-filter:blur(10px);
-      text-align:center;
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-10px); }
+        header a {
+            color:#fff;
+            text-decoration:none;
+            margin-left:20px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        header a:hover { color: var(--neon-cyan); }
 
-    .profile-img {
-      width:150px;
-      height:150px;
-      border-radius:50%;
-      margin-bottom:20px;
-      border:3px solid #00f0ff;
-      object-fit:cover;
-      filter: drop-shadow(0 0 20px #00f0ff);
-    }
+        /* CONTAINER */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+        }
 
-    h2 { color:#00f0ff; margin-bottom:10px; }
-    p { color:#bfc7ff; margin:8px 0; }
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            text-align: center;
+        }
 
-    /* INFO SECTION */
-    .info-section h3 { color:#7f00ff; margin-bottom:15px; }
-    .info-section p { color:#cfd8ff; line-height:1.6; }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-cyan);
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
 
-    .settings-link {
-      display:inline-block;
-      margin-top:25px;
-      padding:12px 30px;
-      border-radius:30px;
-      background: linear-gradient(90deg,#00f0ff,#7f00ff);
-      color:#000;
-      font-weight:600;
-      text-decoration:none;
-      transition:0.3s;
-    }
-    .settings-link:hover { background: linear-gradient(90deg,#7f00ff,#00f0ff); }
+        /* FORM STYLES */
+        .info-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
 
-    /* FOOTER */
-    footer {
-      text-align:center;
-      padding:25px;
-      background:#02030a;
-      color:#7a85ff;
-      font-size:0.85rem;
-      margin-top:60px;
-    }
-  </style>
+        label {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--neon-purple); }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            color: #000;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover { box-shadow: 0 0 20px var(--neon-cyan); transform: scale(1.02); }
+
+        .status-msg {
+            font-size: 0.7rem;
+            margin-top: 10px;
+            color: #00ffcc;
+            display: none;
+        }
+
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">NEONX</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Logout</a>
-    </nav>
-  </header>
+    <header>
+        <div class="logo">NEONX</div>
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="login.html" onclick="logout()">Logout</a>
+        </nav>
+    </header>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
+    <div class="container">
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Avatar" class="profile-img">
+            <h3 id="displayUsername">User</h3>
+            <p style="font-size: 0.8rem; color: #888;">Access Level: User</p>
+        </div>
 
-    <!-- PROFILE CARD -->
-    <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-img">
-      <h2>Niño Kyle Narciso L. Banal</h2>
-      <p>Email: BenDover67@yahoo.com</p>
-      <p>Address: 123 Main Street, Ohio, North America</p>
+        <div class="card">
+            <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Identity Settings</h2>
+            
+            <form id="profileForm">
+                <div class="info-group">
+                    <label>Username</label>
+                    <input type="text" id="editUsername" placeholder="Enter Username">
+                </div>
+                <div class="info-group">
+                    <label>Email Address</label>
+                    <input type="email" id="editEmail" placeholder="Enter Email">
+                </div>
+                <div class="info-group">
+                    <label>Bio/Address</label>
+                    <input type="text" id="editAddress" placeholder="Enter Location">
+                </div>
+                
+                <button type="submit">Update Protocol</button>
+                <div id="statusMsg" class="status-msg">CHANGES SAVED TO THE GRID ✅</div>
+            </form>
+        </div>
     </div>
 
-    <!-- INFO SECTION -->
-    <div class="card info-section">
-      <h3>About Me</h3>
-      <p>Hello! I'm John Doe, a digital interface enthusiast. I specialize in futuristic UI design and interactive dashboards.</p>
-      <a href="settings.html" class="settings-link">Go to Settings</a>
-    </div>
+    <script>
+        // Load data on page start
+        window.onload = function() {
+            const savedUser = localStorage.getItem('neonX_user') || 'Niño Banal';
+            const savedEmail = localStorage.getItem('neonX_email') || 'BenDover67@yahoo.com';
+            const savedAddress = localStorage.getItem('neonX_address') || 'Ohio, North America';
 
-  </div>
+            document.getElementById('displayUsername').innerText = savedUser;
+            document.getElementById('editUsername').value = savedUser;
+            document.getElementById('editEmail').value = savedEmail;
+            document.getElementById('editAddress').value = savedAddress;
+        };
 
-  <footer>
-    NEONX • Profile Page • Created by Niño Banal
-  </footer>
+        // Save changes
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newUsername = document.getElementById('editUsername').value;
+            const newEmail = document.getElementById('editEmail').value;
+            const newAddress = document.getElementById('editAddress').value;
 
+            localStorage.setItem('neonX_user', newUsername);
+            localStorage.setItem('neonX_email', newEmail);
+            localStorage.setItem('neonX_address', newAddress);
+
+            document.getElementById('displayUsername').innerText = newUsername;
+            
+            const msg = document.getElementById('statusMsg');
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 2000);
+        });
+
+        function logout() {
+            // Optional: clear session but keep user data
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>
-
